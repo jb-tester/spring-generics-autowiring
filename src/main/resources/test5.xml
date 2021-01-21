@@ -7,10 +7,10 @@
     <ctx:component-scan base-package="com.mytests.spring.genericsAutowiringTests.test5"/>
     <bean id="main" class="com.mytests.spring.genericsAutowiringTests.test5.MainBean"/>
     <bean id="foo1" class="com.mytests.spring.genericsAutowiringTests.test5.FooBean">
-        <constructor-arg value="foo1"/>
+        <constructor-arg value="plain fooBean 1"/>
     </bean>
     <bean id="foo2" class="com.mytests.spring.genericsAutowiringTests.test5.FooBean">
-        <constructor-arg value="foo2"/>
+        <constructor-arg value="plain fooBean 2"/>
     </bean>
     <utils:list id="fooList">
         <bean class="com.mytests.spring.genericsAutowiringTests.test5.FooBean" id="lfoo1">
@@ -70,4 +70,23 @@
             <constructor-arg value="typed_list_foo4"/>
         </bean>
     </utils:list>
+    <utils:map value-type="java.lang.String" key-type="java.lang.String" id="stringsMap">
+        <entry key="k1" value="v1"/>
+        <entry key="k2" value="v2"/>
+    </utils:map>
+    <utils:map value-type="com.mytests.spring.genericsAutowiringTests.test5.FooBean" key-type="java.lang.String" id="stringFooBeanMap">
+        <entry key="k1">
+            <bean class="com.mytests.spring.genericsAutowiringTests.test5.FooBean">
+                <constructor-arg value="map_foo1"/>
+            </bean>
+        </entry>
+        <entry key="k2">
+            <bean class="com.mytests.spring.genericsAutowiringTests.test5.FooBean">
+                <constructor-arg value="map_foo2"/>
+            </bean>
+        </entry>
+    </utils:map>
+    <bean id="propertiesFactoryBean" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:foo.properties"/>
+    </bean>
 </beans>

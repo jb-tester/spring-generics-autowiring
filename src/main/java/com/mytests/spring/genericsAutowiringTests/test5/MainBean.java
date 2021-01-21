@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -26,12 +27,28 @@ public class MainBean {
     @Resource(name = "fooSet") // completion suggest only <util:list> beans, but can show all beans of FooBean type also; attempt to populate with set causes error marker
     List<FooBean> fooBeanList;
     
+    //// Arrays
+    
     @Autowired
     FooBean[] fooArray;   // correct navigation and completion
 
     @Resource(name = "typedFooList") // completion shows all beans from all contexts; error is shown on attempt to populate with list or set
     FooBean[] fooBeansArray;
 
+    ///// Maps
+
+    @Resource(name="propertiesFactoryBean")
+    private Map<String, String> resMap;
+
+    @Resource(name="stringsMap")
+    private Map<String, String> strMap;
+
+    @Resource(name="stringFooBeanMap")
+    private Map<String, FooBean> fooBeanMap;
+    
+    @Autowired
+    private Map<String, FooBean> map; // should suggest only beans of FooBean type here
+    
     public FooBean[] getFooArray() {
         return fooArray;
     }
@@ -56,6 +73,22 @@ public class MainBean {
         return fooBeanList;
     }
 
+    public Map<String, String> getResMap() {
+        return resMap;
+    }
+
+    public Map<String, String> getStrMap() {
+        return strMap;
+    }
+
+    public Map<String, FooBean> getFooBeanMap() {
+        return fooBeanMap;
+    }
+
+    public Map<String, FooBean> getMap() {
+        return map;
+    }
+
     public void display(){
         System.out.println("-- by resource name: " + getFooBean().toString());
         System.out.println("-- by set<FooBean> type: ");
@@ -78,5 +111,13 @@ public class MainBean {
         for (FooBean fooBean : getFooBeansArray()) {
             System.out.println(fooBean.toString());
         }
+        System.out.println("-- autowired map of String, FooBean: ");
+        getMap().forEach((k, v) -> System.out.println((k + ":" + v)));
+        System.out.println("-- PropertiesFactoryBean bean by resource name: ");
+        getResMap().forEach((k, v) -> System.out.println((k + ":" + v)));
+        System.out.println("-- utils:map of Strings bean by resource name: ");
+        getStrMap().forEach((k, v) -> System.out.println((k + ":" + v)));
+        System.out.println("-- utils:map of String, FooBean bean by resource name: ");
+        getFooBeanMap().forEach((k, v) -> System.out.println((k + ":" + v)));
     }
 }
