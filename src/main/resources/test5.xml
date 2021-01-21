@@ -56,5 +56,18 @@
             <constructor-arg value="typed_set_foo4"/>
         </bean>
     </utils:set>
-    
+    <utils:list id="typedFooList" value-type="com.mytests.spring.genericsAutowiringTests.test5.FooBean">
+        <bean class="com.mytests.spring.genericsAutowiringTests.test5.FooBean" id="tsfoo1">
+            <constructor-arg value="typed_list_foo1"/>
+        </bean>
+        <bean class="com.mytests.spring.genericsAutowiringTests.test5.FooBean" id="tsfoo2">
+            <constructor-arg value="typed_list_foo2"/>
+        </bean>
+        <bean class="com.mytests.spring.genericsAutowiringTests.test5.FooBean" id="tsfoo3">
+            <constructor-arg value="typed_list_foo3"/>
+        </bean>
+        <bean class="com.mytests.spring.genericsAutowiringTests.test5.FooBean" id="tsfoo4">
+            <constructor-arg value="typed_list_foo4"/>
+        </bean>
+    </utils:list>
 </beans>

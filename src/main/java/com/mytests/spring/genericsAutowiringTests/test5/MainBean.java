@@ -29,7 +29,7 @@ public class MainBean {
     @Autowired
     FooBean[] fooArray;   // correct navigation and completion
 
-    @Resource(name = "fooList") // completion shows all beans from context; error is shown on attempt to populate with list or set
+    @Resource(name = "typedFooList") // completion shows all beans from all contexts; error is shown on attempt to populate with list or set
     FooBean[] fooBeansArray;
 
     public FooBean[] getFooArray() {
