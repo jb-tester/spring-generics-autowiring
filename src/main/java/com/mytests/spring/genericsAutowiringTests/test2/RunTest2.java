@@ -42,6 +42,9 @@ public class RunTest2 {
         System.out.println(useService1.getIntegerService1Qualified().getArg());
         System.out.println("Service<Float> case:");
         System.out.println(useService1.getFloatService1().getArg());
+        System.out.println("Component of generic type injecting as parameterized beans:");
+        UseGenericService1 useGenericService1 = ctx.getBean(UseGenericService1.class);
+        useGenericService1.display();
     }
 
 }
